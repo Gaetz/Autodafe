@@ -62,15 +62,15 @@ class Bullet extends Entity
 		switch(dir)
 		{
 			case 2:
-				return Math.round(Math.random() * HXP.stage.stageWidth);
+				return Math.round(Math.random() * HXP.bounds.width);
 			case 4:
-				return HXP.stage.stageWidth+32;
+				return Math.round(HXP.bounds.width);
 			case 8:
-				return Math.round(Math.random() * HXP.stage.stageWidth);
+				return Math.round(Math.random() * HXP.bounds.width);
 			case 6:
-				return -32;
+				return 0;
 			default:
-				return -32;
+				return 0;
 		}
 	}
 	
@@ -79,15 +79,15 @@ class Bullet extends Entity
 		switch(dir)
 		{
 			case 2:
-				return -32;
+				return 0;
 			case 4:
-				return Math.round(Math.random() * HXP.stage.stageHeight);
+				return Math.round(Math.random() * HXP.bounds.height);
 			case 8:
-				return HXP.stage.stageHeight + 32;
+				return Math.round(HXP.bounds.height);
 			case 6:
-				return Math.round(Math.random() * HXP.stage.stageHeight);
+				return Math.round(Math.random() * HXP.bounds.height);
 			default:
-				return -32;
+				return 0;
 		}
 	}
 	
@@ -96,8 +96,8 @@ class Bullet extends Entity
 		var move = computeMove(direction);
 		moveBy(move.x, move.y);
 
-		if (x > HXP.stage.stageWidth + 64 || x < -64
-			|| y > HXP.stage.stageHeight + 64 || y < -64)
+		if (x > HXP.bounds.width + 64 || x < -64
+			|| y > HXP.bounds.height + 64 || y < -64)
 		{
 			scene.remove(this);
 			

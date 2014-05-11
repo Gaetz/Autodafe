@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<meta title="Autodafe" package="com.example.app" version="1.0.0" company="" />
+	<meta title="Autodafe" package="com.rufflerim.app" version="1.0.0" company="" />
 
- 	<app file="Main" main="Main" path="bin" />
+ 	<app file="Autodafe" main="Main" path="bin" />
 
 	<window fps="60" background="0x333333" />
-	<window width="640" height="480" resizable="false" unless="mobile" />
+	<window width="600" height="600" resizable="false" unless="mobile" />
 	<window fullscreen="true" if="mobile" />
 	<window orientation="landscape" vsync="true" antialiasing="0" if="cpp" />
 

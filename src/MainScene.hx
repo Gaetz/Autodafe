@@ -28,7 +28,7 @@ class MainScene extends Scene
 	public override function begin()
 	{
 		addGraphic(new Text("Years:"), 20, 10, 20);
-		player = add(new Block(Math.floor(HXP.stage.stageWidth / 2), Math.floor(HXP.stage.stageHeight / 2)));
+		player = add(new Block(Math.floor(HXP.bounds.width / 2), Math.floor(HXP.bounds.height / 2)));
 		counter = add(new ScoreCounter());
 		add(new Bullet());
 	}
@@ -37,7 +37,7 @@ class MainScene extends Scene
 	{
 		// End condition
 		if(!player.visible)
-			addGraphic(new Text("Burnt !"), 20, HXP.stage.stageWidth / 2 - 50,  HXP.stage.stageHeight / 2);
+			addGraphic(new Text("Burnt !"), 20, HXP.bounds.width / 2 - 50,  HXP.bounds.height / 2);
 		// Game
 		else
 		{

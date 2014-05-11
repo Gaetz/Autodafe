@@ -1,5 +1,6 @@
 import com.haxepunk.Engine;
 import com.haxepunk.HXP;
+import flash.geom.Rectangle;
 
 class Main extends Engine
 {
@@ -9,8 +10,7 @@ class Main extends Engine
 #if debug
 		HXP.console.enable();
 #end
-		HXP.stage.stageWidth = 400;
-		HXP.stage.stageHeight = 400;
+		HXP.bounds = new Rectangle(0, 0, 600, 600);
 		HXP.scene = new MainScene();
 	}
 

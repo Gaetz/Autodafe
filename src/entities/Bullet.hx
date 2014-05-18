@@ -100,7 +100,6 @@ class Bullet extends Entity
 			|| y > HXP.bounds.height + 64 || y < -64)
 		{
 			scene.remove(this);
-			
 		}
 		
 		super.update();

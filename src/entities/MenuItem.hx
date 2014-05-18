@@ -2,6 +2,7 @@ package entities;
 
 import com.haxepunk.Entity;
 import com.haxepunk.Graphic;
+import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Text;
 import com.haxepunk.Mask;
 
@@ -12,31 +13,31 @@ import com.haxepunk.Mask;
 class MenuItem extends Entity
 {
 	public var isSelected : Bool;
-	public var selectedText : Text;
-	public var idleText : Text;
+	public var selected : Image;
+	public var idle : Image;
 	
-	public function new(x:Int, y:Int, text:String) 
+	public function new(x:Int, y:Int, locale:String) 
 	{
 		super(x, y);
-		idleText = new Text(text, x, y, 200, 50, { color: 0xFF0000 });
-		selectedText = new Text(text, x, y, 200, 50, { color: 0xFF0000 });
-		//selectedText.visible = false;
-		graphic = idleText;
+		idle = new Image("graphics/flag-idle_"+locale+".png");
+		selected = new Image("graphics/flag-selected_"+locale+".png");
+		selected.visible = false;
+		graphic = idle;
 	}
 	
 	public override function update()
 	{
 		if (isSelected)
 		{
-			selectedText.visible = true;
-			idleText.visible = false;
-			graphic = selectedText;
+			selected.visible = true;
+			idle.visible = false;
+			graphic = selected;
 		} 
 		else 
 		{
-			idleText.visible = true;
-			selectedText.visible = false;
-			graphic = idleText;
+			idle.visible = true;
+			selected.visible = false;
+			graphic = idle;
 		}
 		super.update();
 	}

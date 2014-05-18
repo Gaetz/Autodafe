@@ -16,43 +16,74 @@ class MenuScene extends Scene
 	var items:Array<MenuItem>;
 	var index:Int;
 	
-	public function new() 
+	public function new(locale:String = "") 
 	{
+		switch(locale)
+		{
+			case "en":
+				index = 1;
+			case "de":
+				index = 2;
+			default:
+				index = 0;
+		}
 		super();
 	}
 	
 	public override function begin()
 	{
-		index = 0;
+		// Title
+		addGraphic(new Text("Autodafe"), 0, 250, 200);
+		// Flags
 		items = new Array<MenuItem>();
-		items[0] = new MenuItem( 130, 150, "Play" );
-		items[1] = new MenuItem( 130, 160, "Language" );
-		items[0].isSelected = true;	
+		items[0] = new MenuItem( 140, 250, "fr" );
+		items[1] = new MenuItem( 250, 250, "en" );
+		items[2] = new MenuItem( 360, 250, "de" );
+		items[index].isSelected = true;	
 		add(items[0]);
 		add(items[1]);
+		add(items[2]);
 	}
 	
 	public override function update() 
 	{
-
-		if (Input.check(Key.DOWN))
+		// Choose language
+		if (Input.released(Key.RIGHT))
 		{
-			index++;
-			for (i in 0...items.length - 1)
+			index = (index + 1) % 3;
+			for (i in 0...items.length)
 			{
 				items[i].isSelected = false;
 			}
 			items[index].isSelected = true;
 		}
-		if (Input.check(Key.UP))
+		if (Input.released(Key.LEFT))
 		{
-			index--;
-			for (i in 0...items.length - 1)
+			index = (index + 2) % 3;
+			for (i in 0...items.length)
 			{
 				items[i].isSelected = false;
 			}
 			items[index].isSelected = true;
 		}
+		// Start game selecting locale
+		if (Input.released(Key.ENTER) || Input.released(Key.SPACE))
+		{
+			var locale = "";
+			switch (index) {
+				case 0:
+					locale = "fr";
+				case 1:
+					locale = "en";
+				case 2:
+					locale = "de";
+				default:
+					locale = "fr";
+			}
+			removeAll();
+			HXP.scene = new MainScene(locale);
+		}
+		// Update
 		super.update();
 	}
 }

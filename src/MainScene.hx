@@ -58,6 +58,7 @@ class MainScene extends Scene
 			{
 				if (Input.released(Key.ENTER) || Input.released(Key.SPACE))
 				{
+					removeAll();
 					HXP.scene = new MenuScene(locale);
 				}
 			}
@@ -79,7 +80,7 @@ class MainScene extends Scene
 				counter.setScore(score);
 			}
 		}
-		
+		// Update
 		super.update();
 	}
 }

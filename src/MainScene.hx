@@ -35,7 +35,7 @@ class MainScene extends Scene
 	
 	public override function begin()
 	{
-		addGraphic(new Text("Years:"), 20, 10, 20);
+		addGraphic(new Text(getYearsText(locale)), 20, 10, 20);
 		player = add(new Block(Math.floor(HXP.bounds.width / 2), Math.floor(HXP.bounds.height / 2)));
 		counter = add(new ScoreCounter());
 		add(new Bullet());
@@ -49,8 +49,8 @@ class MainScene extends Scene
 			// Add end text
 			if (!hasEnded)
 			{
-				addGraphic(new Text("Burnt!"), 20, HXP.bounds.width / 2 - 50,  HXP.bounds.height / 2 - 50);
-				addGraphic(new Text("Rank:"), 20, HXP.bounds.width / 2 - 100,  HXP.bounds.height / 2);
+				addGraphic(new Text(getBurntText(locale)), 20, HXP.bounds.width / 2 - 50,  HXP.bounds.height / 2 - 50);
+				addGraphic(new Text(getRankText(locale) + " " + getRank(score, locale)), 20, HXP.bounds.width / 2 - 100,  HXP.bounds.height / 2);
 				hasEnded = true;
 			} 
 			// Wait input to go to menu
@@ -82,5 +82,71 @@ class MainScene extends Scene
 		}
 		// Update
 		super.update();
+	}
+	
+	
+	private function getBurntText(locale:String)
+	{
+		if (locale == "fr")
+			return "Brule !";
+		else
+			return "Burnt!";
+	}
+	
+	private function getYearsText(locale:String)
+	{
+		if (locale == "fr")
+			return "Annees :";
+		else
+			return "Years:";
+	}
+	
+	private function getRankText(locale:String)
+	{
+		if (locale == "fr")
+			return "Rang :";
+		else
+			return "Rank:";
+	}
+	
+	private function getRank(score:Int, locale:String)
+	{
+		if (locale == "fr")
+		{
+			if (score < 26)
+				return "Marc Levy";
+			else if (score >= 26 && score < 101)
+				return "Honore d'Urfe";
+			else if (score >= 101 && score < 301)
+				return "Corneille";
+			else if (score >= 301 && score < 501)
+				return "Proust";
+			else if (score >= 501 && score < 1001)
+				return "Victor Hugo";
+			else if (score >= 1001 && score < 3001)
+				return "Chretien de Troyes";
+			else if (score >= 3001 && score < 4001)
+				return "Homere";
+			else
+				return "Peinture rupestre";
+		}
+		else {
+			if (score < 26)
+				return "Dan Brown";
+			else if (score >= 26 && score < 101)
+				return "Thomas Hardy";
+			else if (score >= 101 && score < 301)
+				return "Jane Austen";
+			else if (score >= 301 && score < 501)
+				return "Tolkien";
+			else if (score >= 501 && score < 1001)
+				return "Shakespeare";
+			else if (score >= 1001 && score < 3001)
+				return "Virgile";
+			else if (score >= 3001 && score < 4001)
+				return "Homere";
+			else
+				return "Mahabharata";
+		}
 	}
 }

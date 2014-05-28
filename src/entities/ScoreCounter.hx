@@ -12,7 +12,7 @@ import com.haxepunk.Mask;
 class ScoreCounter extends Entity
 {
 	// Constructor
-	public function new(x:Float=70, y:Float=20, graphic:Graphic=null, mask:Mask=null) 
+	public function new(x:Float=90, y:Float=20, graphic:Graphic=null, mask:Mask=null) 
 	{
 		graphic = new Text("O");
 		super(x, y, graphic, mask);		

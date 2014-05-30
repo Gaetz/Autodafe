@@ -25,7 +25,7 @@ class MainScene extends Scene
     public function new(locale:String)
     {
 		this.locale = locale;
-		bulletTimer = 40;
+		bulletTimer = 100;
 		scoreTimer = 10;
 		timer = 0;
 		score = 0;
@@ -69,7 +69,7 @@ class MainScene extends Scene
 			// Time
 			timer++;
 			// Bullets
-			if ((timer % (bulletTimer - Math.floor(score / 10))) == 0)
+			if ((timer % (Math.min(499, bulletTimer - Math.floor(score*2 / 10))) == 0))
 			{
 				add(new Bullet());	
 			}
@@ -89,6 +89,8 @@ class MainScene extends Scene
 	{
 		if (locale == "fr")
 			return "Brule !";
+		else if (locale == "de")
+			return "Verbrannt!";
 		else
 			return "Burnt!";
 	}
@@ -97,6 +99,8 @@ class MainScene extends Scene
 	{
 		if (locale == "fr")
 			return "Annees :";
+		else if (locale == "de")
+			return "Jahre:";
 		else
 			return "Years:";
 	}
@@ -105,6 +109,8 @@ class MainScene extends Scene
 	{
 		if (locale == "fr")
 			return "Rang :";
+		else if (locale == "de")
+			return "Rang:";
 		else
 			return "Rank:";
 	}
@@ -129,6 +135,25 @@ class MainScene extends Scene
 				return "Homere";
 			else
 				return "Peinture rupestre";
+		}
+		else if (locale == "de")
+		{
+			if (score < 26)
+				return "Poppy J. Andersen";
+			else if (score >= 26 && score < 101)
+				return "Theodore Fontan";
+			else if (score >= 101 && score < 301)
+				return "Elfriede Jelinek";
+			else if (score >= 301 && score < 501)
+				return "Brecht";
+			else if (score >= 501 && score < 1001)
+				return "Goethe";
+			else if (score >= 1001 && score < 3001)
+				return "Cicerone";
+			else if (score >= 3001 && score < 4001)
+				return "Homere";
+			else
+				return "Mahabharata";
 		}
 		else {
 			if (score < 26)
